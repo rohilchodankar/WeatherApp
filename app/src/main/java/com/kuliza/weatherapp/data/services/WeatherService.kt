@@ -5,7 +5,7 @@ import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface ApiService {
+interface WeatherService {
   @GET("forecast.json")
   fun getForecastWeather(
       @Query("key")  apikey :String,

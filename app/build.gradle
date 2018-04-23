@@ -92,4 +92,6 @@ dependencies {
 
     // Unit Testing
     testImplementation deps.junit
+
+    testCompile deps.mockitocore
 }

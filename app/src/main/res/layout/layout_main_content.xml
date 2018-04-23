@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+  <data>
+    <import type="android.view.View"/>
+    <variable name="viewType" type="int"/>
+    <variable
+        name="city"
+        type="String"></variable>
+    <variable
+        name="viewModel"
+        type="com.kuliza.weatherapp.ui.home.HomeViewModel"
+        />
+  </data>
+
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+
+  <RelativeLayout
+      android:layout_gravity="center"
+      android:id="@+id/main_container"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@drawable/banner"
+      android:visibility="@{ viewType == 1 ? View.VISIBLE : View.GONE }">
+
+    <TextView
+        android:layout_centerInParent="true"
+        android:id="@+id/tv_degree_celsius"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="50dp"/>
+
+
+    <TextView
+        android:layout_gravity="center"
+        android:id="@+id/tv_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{city}"
+        android:textColor="@android:color/white"
+        android:textSize="25dp"
+        android:layout_below="@+id/tv_degree_celsius"
+        android:layout_centerInParent="true"
+        />
+
+  </RelativeLayout>
+
+
+  <LinearLayout
+      android:layout_gravity="center"
+      android:id="@+id/progress_container"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:visibility="@{ viewType == 0 ? View.VISIBLE : View.GONE }">
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateDrawable="@drawable/progress_rotate_indeterminate"
+        android:indeterminate="true"/>
+
+    <TextView
+        android:id="@+id/tv_loader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Loading"
+        android:textColor="@android:color/white"
+        android:textSize="25dp"/>
+
+  </LinearLayout>
+
+  <LinearLayout
+      android:layout_gravity="center"
+      android:id="@+id/retry_container"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:visibility="@{ viewType == 2 ? View.VISIBLE : View.GONE }">
+
+    <ImageView
+        android:layout_gravity="center"
+        android:id="@+id/retry_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/error"/>
+
+    <Button
+        android:layout_marginTop="20dp"
+        android:id="@+id/btn_retry"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:background="@drawable/retry_btn"
+        android:text="Retry"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:onClick="@{ (view) -> viewModel.loadData()}"
+       />
+
+  </LinearLayout>
+
+</FrameLayout>
+
+</layout>

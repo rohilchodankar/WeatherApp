@@ -2,7 +2,7 @@ package com.kuliza.weatherapp.injection.module
 
 import com.kuliza.weatherapp.AppConstants
 import com.kuliza.weatherapp.BuildConfig
-import com.kuliza.weatherapp.data.services.ApiService
+import com.kuliza.weatherapp.data.services.WeatherService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -32,7 +32,7 @@ import javax.inject.Singleton
         .build()
   }
 
-  @Provides @Singleton internal fun provideApiService(restAdapter: Retrofit): ApiService {
-    return restAdapter.create(ApiService::class.java)
+  @Provides @Singleton internal fun provideApiService(restAdapter: Retrofit): WeatherService {
+    return restAdapter.create(WeatherService::class.java)
   }
 }
